@@ -59,7 +59,7 @@ WSGI_APPLICATION = 'judging.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
+# CHANGE THIS FOR PROD
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,4 +86,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+## REMOVE THIS LINE FOR PROD
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+from django_twilio.client import twilio_client
+TWILIO_NUMBER = list(twilio_client.phone_numbers.iter())[0].phone_number
